@@ -31,10 +31,10 @@
                         <div id="submissionBarChart" style="width: 100%; height: 400px;"></div>
                     </div>
                 @else
-                    <div id="submissionBarChart" comment="error suppression" class="d-none" ></div>
+                    <div id="submissionBarChart" comment="error suppression" class="d-none"></div>
                     @include('components.empty', [
-                        'title' => 'No submissions yet',
-                        'message' => 'Create a form and start collecting data'
+                        'title' => 'Hali hech qanday yuborishlar yo‘q',
+                        'message' => 'Shakl yarating va ma’lumotlarni to‘plashni boshlang'
                     ])
                 @endif
             </div>
@@ -49,18 +49,18 @@
                         <div class="bg-holder d-none d-sm-block d-xl-none d-xxl-block bg-card" style="background-image:url(../assets/img/spot-illustrations/dark_21.png);background-position: bottom right; background-size: auto;"></div>
                     </div>
                     <div class="card-body px-5 position-relative">
-                        <h3 class="mb-5 mt-2 fs-3">Welcome to Surveyr</h3>
+                        <h3 class="mb-5 mt-2 fs-3">Surveyr-ga xush kelibsiz</h3>
                         <p class="text-body-tertiary fw-semibold">
-                            Create beautiful, functional forms for any purpose—contact, registration, surveys, and more. No coding needed. Build and embed forms in minutes
+                            Har qanday maqsad uchun chiroyli va funktsional shakllar yarating — aloqa, ro‘yxatdan o‘tish, so‘rovlar va boshqalar. Kod yozish shart emas. Bir necha daqiqada shakl yarating va joylashtiring.
                         </p>
 
-                        <p class="text-danger fw-semibold mt-4">Disclaimer</p>
+                        <p class="text-danger fw-semibold mt-4">Ogohlantirish</p>
                         <p class="text-body-tertiary">
-                            While Surveyr is an open tool, it leverages <span class="text-info fw-bold">SurveyJS</span> for its form-building capabilities. With that being said Surveyr must strictly be used for non-commercial purposes unless you obtain a developer license from SurveyJS. For more information, please review the <a href="https://surveyjs.io/licensing" class="fw-bold text-info" target="_blank">SurveyJS License.</a>
+                            Surveyr ochiq manba vositasi bo‘lsa-da, u <span class="text-info fw-bold">SurveyJS</span> platformasidan foydalanadi. Shu sababli, Surveyr faqat notijorat maqsadlarda ishlatilishi mumkin, agar siz SurveyJS dan ishlab chiquvchi litsenziyasini olmagan bo‘lsangiz. Batafsil ma’lumot uchun quyidagi havolani ko‘rib chiqing: <a href="https://surveyjs.io/licensing" class="fw-bold text-info" target="_blank">SurveyJS litsenziyasi.</a>
                         </p>
                     </div>
                     <div class="card-footer border-0 py-0 px-5 z-1">
-                        <p class="text-body-tertiary fw-semibold">Follow <a href="https://github.com/ibnsultan">ibnsultan </a> on Github</p>
+                        <p class="text-body-tertiary fw-semibold">GitHub’da <a href="https://github.com/ibnsultan">ibnsultan</a> ni kuzatib boring</p>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-header-title">Recent Submissions</h4>
+                        <h4 class="card-header-title">Oxirgi yuborishlar</h4>
                     </div>
                     <div class="card-body" style="min-height: 400px;">
                         @if($recentSubmissions->count())
@@ -78,10 +78,10 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Form Name</th>
-                                            <th class="text-center">Submissions</th>
-                                            <th class="text-center">Pending Review</th>
-                                            <th class="text-end">Last Submission</th>
+                                            <th>Shakl nomi</th>
+                                            <th class="text-center">Yuborilgan</th>
+                                            <th class="text-center">Ko‘rib chiqilmoqda</th>
+                                            <th class="text-end">Oxirgi yuborish</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -102,8 +102,8 @@
                             </div>                        
                         @else
                             @include('components.empty', [
-                                'title' => 'No submissions yet',
-                                'message' => 'Create a form and start collecting data'
+                                'title' => 'Hali hech qanday yuborishlar yo‘q',
+                                'message' => 'Shakl yarating va ma’lumotlarni to‘plashni boshlang'
                             ])
                         @endif
                     </div>
