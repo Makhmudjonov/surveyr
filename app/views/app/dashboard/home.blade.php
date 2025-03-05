@@ -38,32 +38,6 @@
                     ])
                 @endif
             </div>
-
-            <div class="col-12 col-xl-6 col-xxl-5">
-                <div class="card border h-100 w-100 overflow-hidden">
-                    <div class="bg-holder d-block bg-card" style="background-image:url(/assets/images/vector/welcome_bg.png);background-position: top right;"></div>
-                    <div class="d-dark-none">
-                        <div class="bg-holder d-none d-sm-block d-xl-none d-xxl-block bg-card"></div>
-                    </div>
-                    <div class="d-light-none">
-                        <div class="bg-holder d-none d-sm-block d-xl-none d-xxl-block bg-card" style="background-image:url(../assets/img/spot-illustrations/dark_21.png);background-position: bottom right; background-size: auto;"></div>
-                    </div>
-                    <div class="card-body px-5 position-relative">
-                        <h3 class="mb-5 mt-2 fs-3">Surveyr-ga xush kelibsiz</h3>
-                        <p class="text-body-tertiary fw-semibold">
-                            Har qanday maqsad uchun chiroyli va funktsional shakllar yarating — aloqa, ro‘yxatdan o‘tish, so‘rovlar va boshqalar. Kod yozish shart emas. Bir necha daqiqada shakl yarating va joylashtiring.
-                        </p>
-
-                        <p class="text-danger fw-semibold mt-4">Ogohlantirish</p>
-                        <p class="text-body-tertiary">
-                            Surveyr ochiq manba vositasi bo‘lsa-da, u <span class="text-info fw-bold">SurveyJS</span> platformasidan foydalanadi. Shu sababli, Surveyr faqat notijorat maqsadlarda ishlatilishi mumkin, agar siz SurveyJS dan ishlab chiquvchi litsenziyasini olmagan bo‘lsangiz. Batafsil ma’lumot uchun quyidagi havolani ko‘rib chiqing: <a href="https://surveyjs.io/licensing" class="fw-bold text-info" target="_blank">SurveyJS litsenziyasi.</a>
-                        </p>
-                    </div>
-                    <div class="card-footer border-0 py-0 px-5 z-1">
-                        <p class="text-body-tertiary fw-semibold">GitHub’da <a href="https://github.com/ibnsultan">ibnsultan</a> ni kuzatib boring</p>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="row mt-5">
