@@ -9,15 +9,15 @@
         </tr>
         <tr>
             <td class="wrapper">
-                <p>Hi {{ $name }},</p>
-                <p>Your account has been successfully created by an administrator. Below are your login credentials:</p>
-                <p><strong>Username:</strong> {{ $username }}</p>
-                <p><strong>Password:</strong> {{ $password }}</p>
-                <p>For security reasons, we recommend changing your password after your first login.</p>
-                <p>You can log in to your account <a href="{{ _env('APP_URL') }}" target="_blank">here</a>.</p>
-                <p>If you have any questions or need further assistance, feel free to contact us.</p>
-                <p>Welcome aboard!</p>
-                <p>Best regards,</p>
+                <p>Salom {{ $name }},</p>
+                <p>Sizning hisobingiz administrator tomonidan muvaffaqiyatli yaratildi. Quyida tizimga kirish ma'lumotlaringiz keltirilgan:</p>
+                <p><strong>Foydalanuvchi nomi:</strong> {{ $username }}</p>
+                <p><strong>Parol:</strong> {{ $password }}</p>
+                <p>Xavfsizlik nuqtai nazaridan, birinchi marta tizimga kirganingizdan so‘ng parolingizni o‘zgartirishingizni tavsiya qilamiz.</p>
+                <p>Hisobingizga <a href="{{ _env('APP_URL') }}" target="_blank">shu yerda</a> kirishingiz mumkin.</p>
+                <p>Agar savollaringiz bo‘lsa yoki qo‘shimcha yordam kerak bo‘lsa, biz bilan bog‘laning.</p>
+                <p>Xush kelibsiz!</p>
+                <p>Hurmat bilan,</p>
                 <p>{{ _env('APP_NAME') }}</p>
             </td>
         </tr>

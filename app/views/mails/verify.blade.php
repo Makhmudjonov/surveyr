@@ -9,27 +9,27 @@
         </tr>
         <tr>
             <td class="wrapper">
-                <p>Hello {{ $name }},</p>
-                <p>Thank you for registering with us. Please confirm your email address by clicking the button below:</p>
+                <p>Salom {{ $name }},</p>
+                <p>Biz bilan ro‘yxatdan o‘tganingiz uchun tashakkur. Iltimos, quyidagi tugmani bosish orqali elektron pochta manzilingizni tasdiqlang:</p>
                 <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                     <tbody>
                         <tr style="text-align:center">
                             <td>
-                                <a href="{{ '/auth/verify-email?token=' . $token }}" target="_blank" style="background-color:#3498db; color:white; padding:10px 20px; text-decoration:none;">Verify Email</a>
+                                <a href="{{ '/auth/verify-email?token=' . $token }}" target="_blank" style="background-color:#3498db; color:white; padding:10px 20px; text-decoration:none;">Emailni tasdiqlash</a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
                 <div style="margin-top: 20px;">
-                    <p>Alternatively, you can copy and paste the following link in your browser: <br>
+                    <p>Bundan tashqari, quyidagi havolani brauzeringizga nusxalab joylashtirishingiz mumkin: <br>
                         <a href="{{ _env('APP_URL') . '/auth/verify-email?token=' . $token }}" target="_blank">{{ _env('APP_URL') . '/auth/verify-email?token=' . $token }}</a>
                     </p>
                 </div>
 
-                <p>If you did not create an account, no further action is required.</p>
-                <p>Best regards, </p>
-				<p>The Team - {{ _env('APP_NAME') }}</p>
+                <p>Agar siz ushbu hisobni yaratmagan bo‘lsangiz, hech qanday harakat talab etilmaydi.</p>
+                <p>Hurmat bilan, </p>
+				<p>Jamoa - {{ _env('APP_NAME') }}</p>
             </td>
         </tr>
     </table>
