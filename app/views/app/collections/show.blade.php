@@ -7,18 +7,18 @@
             <div class="col-12 mb-4 position-relative">
                 <h3 class="fs-7">{{ $form->title }}</h3>
                 <p class="text-body-tertiary">
-                    Formaga yuborilgan ma'lumotlarni ko'rish, tahlil qilish va boshqarish
+                    View, Visualize and manage your form submissions
                 </p>
 
-                <!-- TODO: Tuzilgan formani ko‘rish tugmachasini qo‘shish -->
+                <!-- TODO: Add a button to view the compiled form -->
                 <div class="position-absolute top-0 d-none" style="right:8rem;">
-                    <button class="btn btn-primary d-inline" id="compiledView" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tuzilgan formani ko'rish">
+                    <button class="btn btn-primary d-inline" id="compiledView" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View compiled form">
                         <i class="fa-solid fa-list"></i>
                     </button>
                 </div>
 
                 <div class="position-absolute end-5 top-0">
-                    <select id="reviewInput" class="form-selector d-inline" data-placeholder="Baholashni tanlang" data-collection-id="{{ $collection->id }}">
+                    <select id="reviewInput" class="form-selector d-inline" data-placeholder="Select a Review" data-collection-id="{{ $collection->id }}">
                         @foreach ($form->reviews as $review)
                             <option value="{{ $review }}" {{ $collection->review == $review ? 'selected' : '' }}>{{ ucfirst($review) }}</option>                            
                         @endforeach

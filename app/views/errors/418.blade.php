@@ -14,11 +14,11 @@
                                 <span class="shadow">418</span>
                                 <span class="main">418</span>
                             </div>
-                            <h2 class="text-body-secondary fw-bolder mb-3">Men choynakman</h2>
+                            <h2 class="text-body-secondary fw-bolder mb-3">I am a teapot</h2>
                             <p class="text-body mb-5">
-                                Men choynak bilan qahva tayyorlashga urinishni rad qilaman.
+                                I refuses the attempt to brew coffee with a teapot.'
                             </p>
-                            <a class="btn btn-lg btn-primary" href="@route('app.home')">Bosh sahifaga qaytish</a>
+                            <a class="btn btn-lg btn-primary" href="@route('app.home')">Go Home</a>
                         </div>
                     </div>
                 </div>

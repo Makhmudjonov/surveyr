@@ -12,12 +12,12 @@
                         <div class="col-12 col-lg-6 text-center text-lg-start">
                             <img class="img-fluid mb-6 w-50 w-lg-75 d-dark-none" src="/assets/images/vector/500.png" alt="" />
                             <img class="img-fluid mb-6 w-50 w-lg-75 d-light-none" src="/assets/images/vector/dark_500.png" alt="" />
-                            <h2 class="text-body-secondary fw-bolder mb-3">Server xatosi!</h2>
+                            <h2 class="text-body-secondary fw-bolder mb-3">Server Error!</h2>
                             <p class="text-body mb-5">
-                                Ooops! Nimadir noto‘g‘ri ketdi, lekin xavotir olmang! 
-                                <br class="d-none d-sm-block" /> Bu bizdan emas, sizdan... Yo‘q, bu sizdan emas, bizdan!
+                                Ooops! Something went wrong, but no worries! it's you and not us
+                                <br class="d-none d-sm-block" /> I mean it's not you, it's us.
                             </p>
-                            <a class="btn btn-lg btn-primary" href="@route('app.home')">Bosh sahifaga qaytish</a>
+                            <a class="btn btn-lg btn-primary" href="@route('app.home')">Go Home</a>
                         </div>
                     </div>
                 </div>

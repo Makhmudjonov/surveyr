@@ -9,10 +9,10 @@
         </tr>
         <tr>
             <td class="wrapper">
-                <p>Salom {{ $name }},</p>
-                <p>Biz sizga yangi qurilmadan akkauntingizga kirilganligini bildirmoqchimiz. Agar akkauntingizda shubhali harakatlarni sezsangiz, darhol biz bilan bog'laning va parolingizni o'zgartirib akkauntingizni himoya qiling.</p>
-                <p>Hurmat bilan,</p>
-                <p>Jamoa - {{ _env('APP_NAME') }}</p>
+                <p>Hi there {{ $name }},</p>
+                <p>We wanted to let you know that a new device was used to sign in to your account, If you suspect any suspicious activity on your account, please contact us immediately and secure your account by changing your password.</p>
+                <p>Best regards, </p>
+				<p>The Team - {{ _env('APP_NAME') }}</p>
             </td>
         </tr>
     </table>

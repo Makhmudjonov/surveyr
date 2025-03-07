@@ -12,9 +12,9 @@
                         <div class="col-12 col-lg-6 text-center text-lg-start">
                             <img class="img-fluid mb-6 w-50 w-lg-75 d-dark-none" src="/assets/images/vector/403.png" alt="" />
                             <img class="img-fluid mb-6 w-50 w-lg-75 d-light-none" src="/assets/images/vector/dark_403.png" alt="" />
-                            <h2 class="text-body-secondary fw-bolder mb-3">Kirish taqiqlangan!</h2>
-                            <p class="text-body mb-5">To‘xtang! Siz ruxsat etilmagan hududga kirishga urinmoqdasiz. <br class="d-none d-sm-block" /> </p>
-                            <a class="btn btn-lg btn-primary" href="@route('app.home')">Bosh sahifaga qaytish</a>
+                            <h2 class="text-body-secondary fw-bolder mb-3">Access Forbidden!</h2>
+                            <p class="text-body mb-5">Halt! Thou art endeavouring to trespass upon a realm not granted unto thee. <br class="d-none d-sm-block" /> </p>
+                            <a class="btn btn-lg btn-primary" href="@route('app.home')">Go Home</a>
                         </div>
                     </div>
                 </div>

@@ -4,16 +4,16 @@
         <div class="row">
 
             <div class="col-12 mb-4 position-relative">
-                <h3 class="fs-7">Foydalanuvchilar</h3>
+                <h3 class="fs-7">Users</h3>
                 <p class="text-body-tertiary">
-                    Foydalanuvchilar va ularning rollarini boshqarish
+                    Manage users and their roles
                     <a href="#" class="text-phoenix-primary"></a>
                 </p>
 
                 <div class="position-absolute end-5 top-0">
                     <a href="javascript:void()" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newUserModal">
                         <i class="fa-solid fa-user me-2 d-inline d-md-none"></i>
-                        <span class="d-none d-md-inline">Yangi foydalanuvchi</span>
+                        <span class="d-none d-md-inline">New User</span>
                     </a>
                 </div>
             </div>
@@ -27,8 +27,8 @@
                 @else
                     <div class="text-center">
                         @include('components.empty', [
-                            'title' => 'Hali hech qanday forma mavjud emas',
-                            'message' => 'Forma yarating va ma’lumot to‘plashni boshlang'
+                            'title' => 'No forms yet',
+                            'message' => 'Create a form and start collecting data'
                         ])
                     </div>
                 @endif

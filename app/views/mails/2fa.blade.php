@@ -9,8 +9,8 @@
 		</tr>
 		<tr>
 			<td class="wrapper">
-				<p>Salom {{ $name }},</p>
-				<p>Siz ikki faktorli autentifikatsiya (2FA) orqali tizimga kirishni so‘radingiz. Kirish jarayonini yakunlash uchun quyidagi koddan foydalaning:</p>
+				<p>Hello {{ $name }},</p>
+				<p>You have requested to log in using Two-Factor Authentication (2FA). Use the code below to complete your login process:</p>
 				<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
 					<tbody>
 						<tr style="text-align:center">
@@ -20,9 +20,9 @@
 						</tr>
 					</tbody>
 				</table>
-				<p>Diqqat qiling, ushbu kod faqat cheklangan vaqt davomida amal qiladi.</p>
-				<p>Agar siz ushbu kodni so‘ramagan bo‘lsangiz, ushbu xatni e'tiborsiz qoldiring yoki darhol qo‘llab-quvvatlash jamoamizga murojaat qiling.</p>
-				<p>Hurmat bilan,<br>Qo‘llab-quvvatlash jamoasi</p>
+				<p>Please note, this code is valid for only a limited time.</p>
+				<p>If you did not request this code, please disregard this email or contact our support team immediately.</p>
+				<p>Best regards,<br>The Support Team</p>
                 <p>{{ _env('APP_NAME') }}</p>
 			</td>
 		</tr>

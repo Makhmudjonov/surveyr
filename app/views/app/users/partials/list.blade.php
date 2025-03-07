@@ -4,9 +4,9 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Ism</th>
+                    <th>Name</th>
                     <th>Email</th>
-                    <th>Roli</th>
+                    <th>Role</th>
                     <th></th>
                 </tr>
             </thead>
@@ -26,21 +26,21 @@
                                     <li>
                                         <a class="dropdown-item" href="javascript:void(0)" id="editUserBtn" data-bs-toggle="modal" data-bs-target="#editUserModal" data-user='{!! $user !!}'>
                                             <i class="fa-solid fa-pencil me-2"></i>
-                                            Foydalanuvchini tahrirlash
+                                            Edit User
                                         </a>
                                     </li>
                                     @if($user->status === 'active')
                                         <li>
                                             <a class="dropdown-item text-danger" href="@route('users.suspend', $user->id)">
                                                 <i class="fa-solid fa-stop-circle me-2"></i>
-                                                Foydalanuvchini bloklash
+                                                Suspend User
                                             </a>
                                         </li>
                                     @else
                                         <li>
                                             <a class="dropdown-item text-success" href="@route('users.activate', $user->id)">
                                                 <i class="fa-solid fa-play-circle me-2"></i>
-                                                Foydalanuvchini faollashtirish
+                                                Activate User
                                             </a>
                                         </li>
                                     @endif
