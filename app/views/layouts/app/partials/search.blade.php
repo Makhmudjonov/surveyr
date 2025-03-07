@@ -27,7 +27,7 @@
 								</div>
 
 								<hr class="my-0" />
-								<h6 class="dropdown-header text-body-highlight fs-9 border-bottom border-translucent py-2 lh-sm">Spaces</h6>
+								<h6 class="dropdown-header text-body-highlight fs-9 border-bottom border-translucent py-2 lh-sm">Bo'shliqlar</h6>
 								<div class="py-2" id="spaceSearchResults">
 									<!--a class="dropdown-item" href="/space/setup/id">
 										<div class="d-flex align-items-center">

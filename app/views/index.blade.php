@@ -38,14 +38,14 @@
                     <ion-icon name="book-outline"></ion-icon>
                     <div class="ml-1">
                         <h4>
-                            Leaf MVC Documentation
+                            Barg MVC Hujjatlari
                         </h4>
                         <p class="mt-1">
-                            Leaf MVC comes with a clean and developer-friendly documentation for both beginners and
-                            seasoned users.
+                            Barg MVC ikkala yangi boshlanuvchilar uchun ham toza va ishlab chiqaruvchilarga qulay bo'lgan hujjatlar bilan birga keladi va
+ tajribali foydalanuvchilar.
                         </p>
                         <a href="https://mvc.leafphp.dev/" target="_blank" rel="noopener">
-                            Leaf MVC Docs
+                            Barg mvc dotslari
                         </a>
                     </div>
                 </div>
@@ -53,11 +53,11 @@
                     <ion-icon name="laptop-outline"></ion-icon>
                     <div class="ml-1">
                         <h4>
-                            Leaf Documentation
+                            Barg hujjatlari
                         </h4>
                         <p class="mt-1">
-                            Since Skeleton is basically a boilerplate built with Leaf, we recommend checking out the
-                            leaf docs first.
+                            Skelet asosan barg bilan qurilgan qaynatgichdir, biz tekshirishni tavsiya etamiz
+ Avval barg dotslari.
                         </p>
                         <a href="https://leafphp.dev" target="_blank" rel="noopener">
                             Leaf Docs
@@ -67,10 +67,10 @@
                 <div class="flex" style="width: calc(50% - 80px); padding: 30px;">
                     <ion-icon name="logo-twitter"></ion-icon>
                     <div class="ml-1">
-                        <h4>Twitter</h4>
+                        <h4>Tvitter</h4>
                         <p class="mt-1">
-                            Follow Leaf PHP on Twitter to get latest news about releases, new modules, tutorials
-                            and amazing tips.
+                            Twitter-dagi Nizomlar, yangi modullar, darsliklar haqida so'nggi yangiliklarni olish uchun Twitter-dagi barg php-ga rioya qiling
+ va ajoyib maslahatlar.
                         </p>
                         <a href="https://twitter.com/leafphp" target="_blank" rel="noopener">@leafphp</a>
                     </div>
@@ -78,13 +78,13 @@
                 <div class="flex" style="width: calc(50% - 80px); padding: 30px;">
                     <ion-icon name="logo-youtube"></ion-icon>
                     <div class="ml-1">
-                        <h4>YouTube</h4>
+                        <h4>Youtube</h4>
                         <p class="mt-1">
-                            We have a youtube channel where we upload videos on leaf, our modules, frameworks and other
-                            projects.
+                            Bizda youtube kanali bor, u erda biz barg va bizning modullarimiz, va boshqa videolarni yuklaymiz
+ loyihalar.
                         </p>
                         <a href="https://www.youtube.com/channel/UCllE-GsYy10RkxBUK0HIffw" target="_blank"
-                            rel="noopener">Leaf YouTube Channel</a>
+                            rel="noopener">Barg youtube kanali</a>
                     </div>
                 </div>
             </div>

@@ -250,7 +250,7 @@
                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td class="content-block">
-                                        <span class="apple-link"> Copyright &copy; {{_env('APP_NAME')}} {{date('Y')}} </span>
+                                        <span class="apple-link"> Mualliflik huquqi &copy; {{_env('APP_NAME')}} {{date('Y')}} </span>
                                     </td>
                                 </tr>
                             </table>

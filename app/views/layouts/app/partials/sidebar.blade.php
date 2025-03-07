@@ -9,13 +9,13 @@
         <li class="nav-item">
             <a class="nav-link lh-1 @active('app.spaces')" href="@route('spaces.list')">
                 <i class="fa-solid fa-folders me-2 fs-10"></i>
-                Spaces
+                Bo'shliqlar
             </a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link lh-1 @active('app.forms')" href="@route('forms.list')">
                 <span class="fa-regular fa-table-tree me-2 fs-10"></span>
-                Forms
+                Shakllar
             </a>
         </li>
 
@@ -23,7 +23,7 @@
             <li class="nav-item">
                 <a class="nav-link lh-1 @active('app.users')" href="@route('users.index')">
                     <i class="fa-solid fa-users me-2 fs-10"></i>
-                    Users
+                    Foydalanuvchilar
                 </a>
             </li>
         @endif

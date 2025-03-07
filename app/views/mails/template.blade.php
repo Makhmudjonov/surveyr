@@ -9,16 +9,16 @@
 		</tr>
 		<tr>
 			<td class="wrapper">
-				<p>Hi there</p>
-				<p>Sometimes you just want to send a simple HTML email with a simple design and clear call to action. This is it.</p>
+				<p>salom</p>
+				<p>Ba'zida siz oddiy HTML elektron pochtasini oddiy dizayn va aniq qo'ng'iroq bilan yuborishingizni xohlaysiz. Bu shunday.</p>
 				<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
 					<tbody>
 						<tr style="text-align:center">
-							<td> <a href="http://htmlemail.io" target="_blank">Call To Action</a> </td>
+							<td> <a href="http://htmlemail.io" target="_blank">Harakatga qo'ng'iroq qiling</a> </td>
 						</tr>
 					</tbody>
 				</table>
-				<p>This is a really simple email template. It's sole purpose is to get the recipient to click the button with no distractions.</p>
+				<p>Bu haqiqatan ham oddiy elektron pochta shablonidir. Bu yagona maqsadi - bu pulsiz tugmachani bosish uchun qabul qiluvchini olishdir.</p>
 				<p>Good luck! Hope it works.</p>
 			</td>
 		</tr>

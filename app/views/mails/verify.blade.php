@@ -9,8 +9,8 @@
         </tr>
         <tr>
             <td class="wrapper">
-                <p>Hello {{ $name }},</p>
-                <p>Thank you for registering with us. Please confirm your email address by clicking the button below:</p>
+                <p>Salom {{ $name }},</p>
+                <p>Biz bilan ro'yxatdan o'tganingiz uchun tashakkur. Iltimos, quyidagi tugmani bosib elektron pochta manzilingizni tasdiqlang:</p>
                 <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                     <tbody>
                         <tr style="text-align:center">
@@ -22,14 +22,14 @@
                 </table>
 
                 <div style="margin-top: 20px;">
-                    <p>Alternatively, you can copy and paste the following link in your browser: <br>
+                    <p>Shu bilan bir qatorda, siz brauzeringizda quyidagi havolani nusxalashingiz va joylashtirishingiz mumkin: <br>
                         <a href="{{ _env('APP_URL') . '/auth/verify-email?token=' . $token }}" target="_blank">{{ _env('APP_URL') . '/auth/verify-email?token=' . $token }}</a>
                     </p>
                 </div>
 
-                <p>If you did not create an account, no further action is required.</p>
-                <p>Best regards, </p>
-				<p>The Team - {{ _env('APP_NAME') }}</p>
+                <p>Agar siz hisob qaydnomasini yaratmagan bo'lsangiz, boshqa chora kerak emas.</p>
+                <p>Eng yaxshi ezgu tilaklar bilan, </p>
+				<p>Jamoa - {{ _env('APP_NAME') }}</p>
             </td>
         </tr>
     </table>
