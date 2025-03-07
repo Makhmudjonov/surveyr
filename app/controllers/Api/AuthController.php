@@ -17,7 +17,7 @@ class AuthController extends BaseController
     }
 
     /**
-     * Foydalanuvchini tizimga kirishini amalga oshirish.
+     * Log the user in.
      * 
      * @return void
      */
@@ -29,15 +29,15 @@ class AuthController extends BaseController
                 'status' => 'active'
             ]);
 
-            if(!$data) return self::jsonError("Noto‘g‘ri login ma’lumotlari", 401);
+            if(!$data) return self::jsonError("Invalid login credentials", 401);
 
             static::$user = auth()->user();
             if(!static::$user->email_verified && AuthConfig('email.verify.enforce')){
-                return self::jsonError("Iltimos, email manzilingizni tasdiqlang", 401);
+                return self::jsonError("Please verify your email address", 401);
             }
 
             $token = $this->signinToken();
-            if(!$token) return self::jsonError("Tizimga kirish amalga oshmadi", 401);
+            if(!$token) return self::jsonError("Failed to sign in", 401);
 
             $this->token = $token;
             $this->user = [
@@ -45,7 +45,7 @@ class AuthController extends BaseController
                 'email' => static::$user->email,
             ];
 
-            return self::jsonSuccess("Tizimga muvaffaqiyatli kirdingiz");
+            return self::jsonSuccess("Signed in successfully");
         }
 
         catch(\Exception $e){
@@ -55,7 +55,7 @@ class AuthController extends BaseController
     }
 
     /**
-     * Kirish tokeni
+     * Sigin Token
      *
      * @return void
      */
@@ -77,7 +77,7 @@ class AuthController extends BaseController
     }
 
     /**
-     * So‘rovni avtorizatsiya qilish.
+     * Authorize the request.
      *
      * @return void
      */
@@ -85,7 +85,7 @@ class AuthController extends BaseController
     {
         try {
             $token = self::extractToken();
-            self::verifyPassphrase($token);         // agar maxfiy so‘z berilgan bo‘lsa
+            self::verifyPassphrase($token);         // if passphrase is provided
             $userId = self::validateToken($token);
             self::authenticateUser($userId);
             return true;
@@ -97,7 +97,7 @@ class AuthController extends BaseController
     }
 
     /**
-     * Tokenni headerdan olish.
+     * Extract the token from headers.
      *
      * @return string
      * @throws Exception
@@ -108,14 +108,14 @@ class AuthController extends BaseController
         $token = str_replace('Bearer ', '', $headers['Authorization'] ?? null);
 
         if (!$token) {
-            die(self::jsonError("Noto‘g‘ri token", 401));
+            die(self::jsonError("Invalid token", 401));
         }
 
         return $token;
     }
 
     /**
-     * Agar berilgan bo‘lsa, maxfiy so‘zni tekshirish.
+     * Verify the passphrase signature if provided.
      *
      * @param string $token
      * @return void
@@ -127,17 +127,17 @@ class AuthController extends BaseController
         if ($passphrase) {
             $apiKey = ApiKey::where('token', $token)->first();
             if (!$apiKey) {
-                die(self::jsonError("Token oldindan berilgan ro‘yxatdan topilmadi", 401));
+                die(self::jsonError("Token could not be found from pre-Issued Tokens", 401));
             }
 
             if (!Password::verify($passphrase, $apiKey->secret)) {
-                die(self::jsonError("Maxfiy so‘z imzosini tekshirib bo‘lmadi", 401));
+                die(self::jsonError("Could not verify the Passphrase signature", 401));
             }
         }
     }
 
     /**
-     * JWT tokenni tekshirish va foydalanuvchi ID sini olish.
+     * Validate the JWT token and extract the user ID.
      *
      * @param string $token
      * @return int
@@ -154,19 +154,19 @@ class AuthController extends BaseController
 
             $apiKey = ApiKey::where('token', $token)->first();
             if (!$userId || (request()->params('passphrase') && $userId != $apiKey->user_id ?? null)) {
-                die(self::jsonError("Token imzosini tekshirib bo‘lmadi", 401));
+                die(self::jsonError("Could not verify the Token signature", 401));
             }
 
             return $userId;
         }
 
         catch(\Exception $e){
-            die(self::jsonError("Token imzo tekshiruvidan o‘tmadi", 401));
+            die(self::jsonError("Token Signature verification failed", 401));
         }
     }
 
     /**
-     * Olingan foydalanuvchi ID orqali foydalanuvchini tekshirish.
+     * Authenticate the user using the extracted user ID.
      *
      * @param int $userId
      * @return void
@@ -177,7 +177,7 @@ class AuthController extends BaseController
         auth()->config('password.key', false);
         $auth = auth()->login(['id' => $userId]);
         if (!$auth) {
-            die(self::jsonError("Token orqali foydalanuvchi topilmadi", 401));
+            die(self::jsonError("Invalid user provided by the token", 401));
         }
     }
 

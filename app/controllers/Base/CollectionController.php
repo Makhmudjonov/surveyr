@@ -4,10 +4,11 @@ namespace App\Controllers\Base;
 
 /**
  * ----------------------------------------------------
- * To‘plam Kontrolleri
+ * Collection Controller
  * ----------------------------------------------------
  * 
- * Ushbu kontroller forma yuborish va tegishli funksiyalarni boshqarish uchun javobgardir.
+ * This controller is responsible for handling form submissions
+ * and related functionalities.
  */
 
 use App\Controllers\Controller;
@@ -27,7 +28,7 @@ class CollectionController extends Controller
     }
 
     /**
-    * Yangi yuborilgan formani saqlash
+    * Store a new submission
     *
     * @param string $hash
     * @param string $slug
@@ -37,10 +38,10 @@ class CollectionController extends Controller
     {
         try{
             $form = Form::publicForm($hash, $slug);
-            if(!$form) return $this->jsonError("Forma topilmadi");
+            if(!$form) return $this->jsonError("Form not found");
 
             $content = request()->params('content');
-            if(!$content) return $this->jsonError("Yuboriladigan ma'lumot talab qilinadi");
+            if(!$content) return $this->jsonError("Submission data is required");
 
             $data =[
                 'form_id' => $form->id,
@@ -48,11 +49,11 @@ class CollectionController extends Controller
             ];
 
             $collection = Collection::create($data);
-            if(!$collection) return $this->jsonError("Yuborilgan ma'lumotni saqlash muvaffaqiyatsiz tugadi");
+            if(!$collection) return $this->jsonError("Failed to save submission");
 
-            # TODO: Xabarnomalar va qo‘shimcha amallar
+            # TODO: Hooks and notifications
 
-            return $this->jsonSuccess("Yuborilgan ma'lumot muvaffaqiyatli saqlandi");
+            return $this->jsonSuccess("Submission saved successfully");
         }
 
         catch(\Exception $e){
@@ -61,64 +62,64 @@ class CollectionController extends Controller
     }
 
     /**
-    * Formaga yuborilgan barcha ma'lumotlarni ko‘rsatish
+    * Show a form's submissions
     *
     * @param int $formId
     * @return mixed
     */
     public function list($formId)
     {
-        # so‘rovni tekshirish
+        # request validation
         $form = Form::find($formId);
         if(!$form) return $this->errorPage(404);
 
-        # foydalanuvchi huquqlarini tekshirish
+        # validate user access
         if(!$this->formInstance->formOwnerShipCheck($form->id) && !$this->formInstance->hasAccessbySpace($form->spaces)){
             return $this->errorPage(403);
         }
         
-        # ma’lumotlarni ajratish
+        # data allocation
         $this->form = $form;
         $this->submissions = Collection::formCollections($formId, true);
 
-        $this->renderPage("$form->title uchun yuborilgan ma'lumotlar", "app.collections.list");
+        $this->renderPage("Submissions for $form->title", "app.collections.list");
     }
 
     /**
-     * Formaga yuborilgan ma'lumotlarni vizualizatsiya qilish
+     * Visualize a form's submissions
      *
      * @param int $formId
      * @return mixed
      */
     public function visualize($formId)
     {
-        # so‘rovni tekshirish
+        # request validation
         $form = Form::find($formId);
         if(!$form) return $this->errorPage(404);
 
-        # foydalanuvchi huquqlarini tekshirish
+        # validate user access
         if(!$this->formInstance->formOwnerShipCheck($form->id) && !$this->formInstance->hasAccessbySpace($form->spaces)){
             return $this->errorPage(403);
         }
 
-        # ma’lumotlarni ajratish
+        # data allocation
         $this->form = $form;
         $this->tabsInfo = $this->tabifyInfo($form->content);
         $this->questions = $this->extractQuestions($form->content);
         $this->collections = Collection::formCollections($formId)->pluck('submission')->toArray();
 
-        $this->renderPage("$form->title uchun yuborilgan ma'lumotlarni vizualizatsiya qilish", "app.collections.visualize");
+        $this->renderPage("Visualize Submissions for $form->title", "app.collections.visualize");
     }
 
     /**
-     * Yuborilgan ma'lumotni ko‘rsatish
+     * Show Submission
      * 
      * @param int $id
      * @return void
      */
     public function show($id)
     {
-        # yuborilgan ma'lumotni va unga tegishli formani olish
+        # fetch the collection and form data
         $collection = Collection::find($id);
         if(!$collection) return $this->errorPage(404);
 
@@ -126,14 +127,14 @@ class CollectionController extends Controller
         if(!$form) return $this->errorPage(404);
 
         $formContent = $form->content;
-        $formContent['mode'] = 'faqat ko‘rish';
+        $formContent['mode'] = 'display';
 
-        # foydalanuvchi huquqlarini tekshirish
+        # validate user access
         if(!$this->formInstance->formOwnerShipCheck($form->id) && !$this->formInstance->hasAccessbySpace($form->spaces)){
             return $this->errorPage(403);
         }
 
-        # ma’lumotlarni ajratish
+        # data allocation
         $this->form = $form;
         $this->collection = $collection;
         $this->formContent = $formContent;
@@ -142,7 +143,7 @@ class CollectionController extends Controller
     }
 
     /**
-     * Yuborilgan ma'lumotni ko‘rib chiqish
+     * Review Submission
      * 
      * @param int $id
      * @return void
@@ -150,27 +151,27 @@ class CollectionController extends Controller
     public function review($id)
     {
         try{
-            # yuborilgan ma'lumotni va unga tegishli formani olish
+            # fetch the collection and form data
             $collection = Collection::find($id);
-            if(!$collection) return $this->jsonError("Yuborilgan ma'lumot topilmadi");
+            if(!$collection) return $this->jsonError("Submission not found");
 
             $form = Form::find($collection->form_id);
-            if(!$form) return $this->jsonError("Forma topilmadi");
+            if(!$form) return $this->jsonError("Form not found");
 
-            # foydalanuvchi huquqlarini tekshirish
+            # validate user access
             if(!$this->formInstance->formOwnerShipCheck($form->id) && !$this->formInstance->hasAccessbySpace($form->spaces)){
-                return $this->jsonError("Sizda ushbu formaga kirish huquqi yo‘q");
+                return $this->jsonError("You don't have access to this form");
             }
 
             $review = request()->params('review');
             if(!$review || !is_array($form->reviews))
-                return $this->jsonError("Ko‘rib chiqish ma'lumoti talab qilinadi");
+                return $this->jsonError("Review data is required");
 
             $collection->review = $review;
             if(!$collection->save())
-                return $this->jsonError("Ko‘rib chiqishni saqlash muvaffaqiyatsiz tugadi");
+                return $this->jsonError("Failed to save review");
 
-            return $this->jsonSuccess("Ko‘rib chiqish muvaffaqiyatli saqlandi");
+            return $this->jsonSuccess("Review saved successfully");
         }
 
         catch(\Exception $e){
@@ -179,10 +180,11 @@ class CollectionController extends Controller
 
     }
 
+
     /**
-     * Formadan savollarni ajratib olish
+     * Extract questions from form content
      * 
-     * @param array $formQuestions
+     * @param array $formContent
      * @return array
      */
     protected function extractQuestions(array $formQuestions) : array
@@ -197,7 +199,8 @@ class CollectionController extends Controller
     }
 
     /**
-     * Formani bo‘limlarga ajratish
+     * Tabify form 
+     * Generate tabs from form content
      * 
      * @param array $formContent
      * @return array
@@ -212,9 +215,9 @@ class CollectionController extends Controller
                 return $element['name'];
             }, $page['elements']);
             
-            // TODO: Vizualizatsiya bo‘limlarini yaratish
+            // TODO: Tabify visualization
             $tabs[] = [
-                'name' => $page['title'] ?? 'Sahifa',
+                'name' => $page['title'] ?? 'Page',
                 'questions' => $questions
             ];
         }
@@ -223,7 +226,7 @@ class CollectionController extends Controller
     }
 
     /**
-     * Formaning barcha yuborilgan ma'lumotlarini o‘chirish
+     * Clear all submissions for a form
      * 
      * @param int $formId
      * @return void
@@ -233,12 +236,23 @@ class CollectionController extends Controller
         $form = Form::find($formId);
         if(!$form) return $this->errorPage(404);
 
-        # foydalanuvchi huquqlarini tekshirish
+        # validate user access
         if(!$this->formInstance->formOwnerShipCheck($form->id)){
             return $this->errorPage(403);
         }
 
         Collection::where('form_id', $formId)->delete();
         return redirect(route('forms.submissions', $formId));    
+    }
+
+    # TODO: Review Scales
+    public static function routes(){
+        app()::get('/visualize/{form}', ['name'=>'forms.visualize', 'CollectionController@visualize']);
+
+        app()::get('/submissions/show/{form}', ['name'=>'collections.show', 'CollectionController@show']);
+        app()::get('/submissions/all/{form}', ['name'=>'forms.submissions', 'CollectionController@list']);
+        app()::get('/submissions/clear/{form}', ['name'=>'collections.clear', 'CollectionController@clear']);
+
+        app()::post('/submissions/review/{id}', ['name'=>'collections.review', 'CollectionController@review']);
     }
 }

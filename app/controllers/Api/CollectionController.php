@@ -18,8 +18,8 @@ class CollectionController extends BaseController
     }
 
     /**
-     * Forma jo‘natmalarini saqlash
-     * Yagona forma jo‘natmasini saqlaydi
+     * Stores a form submission
+     * Save a single form submission
      * 
      * @param request $formId
      * @param request $content
@@ -31,10 +31,10 @@ class CollectionController extends BaseController
         try{
             $formId = request()->params('formId');
             $form = Form::where(DB::$capsule::raw("MD5(id)"), $formId)->first();
-            if(!$form) return self::jsonError("Forma topilmadi", 404);
+            if(!$form) return self::jsonError("Form not found", 404);
 
             $content = json_decode($_REQUEST['content']) ?? null;
-            if(!$content) return self::jsonError("Jo‘natma ma’lumotlari talab qilinadi");
+            if(!$content) return self::jsonError("Submission data is required");
 
             $data =[
                 'form_id' => $form->id,
@@ -42,9 +42,9 @@ class CollectionController extends BaseController
             ];
 
             $collection = Collection::create($data);
-            if(!$collection) return self::jsonError("Jo‘natmani saqlash muvaffaqiyatsiz bo‘ldi");
+            if(!$collection) return self::jsonError("Failed to save submission");
 
-            return self::jsonSuccess("Jo‘natma muvaffaqiyatli saqlandi");
+            return self::jsonSuccess("Submission saved successfully");
         }
 
         catch(\Exception $e){
@@ -53,7 +53,7 @@ class CollectionController extends BaseController
     }
 
     /**
-     * Bir nechta forma jo‘natmalarini saqlash
+     * Stores multiple form submissions
      * 
      * @param request $formId
      * @param request $content
@@ -63,26 +63,26 @@ class CollectionController extends BaseController
     public function multiple(){
         try{
 
-            # Formani tekshirish
+            # validate form
             $formId = request()->params('formId');
             $form = Form::where(DB::$capsule::raw("MD5(id)"), $formId)->first();
-            if(!$form) return self::jsonError("Forma topilmadi", 404);
+            if(!$form) return self::jsonError("Form not found", 404);
 
-            # Kontentni tekshirish
+            # validate content
             $content = json_decode($_REQUEST['content']) ?? null;
-            if(!$content) return self::jsonError("Jo‘natma maydoni bo‘sh yoki noto‘g‘ri ma’lumotni o‘z ichiga oladi", 400);
-            if(count($content) < 2) return self::jsonError("Jo‘natma kamida 2 ta elementni o‘z ichiga olishi kerak", 400);
+            if(!$content) return self::jsonError("Submission data field is empty or contains invalid data", 400);
+            if(count($content) < 2) return self::jsonError("Submission must contain at least 2 items", 400);
 
-            # Kiritish uchun ma’lumotlarni tayyorlash
+            # prepare data for insertion
             $data = array_map(fn($submission) => [
                 'form_id' => $form->id,
                 'submission' => json_encode($submission)
             ], $content);
 
             $collection = Collection::insert($data);
-            if(!$collection) return self::jsonError("Jo‘natmalarni saqlash muvaffaqiyatsiz bo‘ldi", 500);
+            if(!$collection) return self::jsonError("Failed to save submissions", 500);
 
-            return self::jsonSuccess("Jo‘natmalar muvaffaqiyatli saqlandi");
+            return self::jsonSuccess("Submissions saved successfully");
         }
 
         catch(\Exception $e){

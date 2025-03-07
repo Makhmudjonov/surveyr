@@ -15,27 +15,27 @@ class FormsController extends BaseController
     }
 
     /**
-     * Foydalanuvchi tomonidan yaratilgan barcha formalarning ro‘yxatini olish
+     * Fetches all forms created by the user
      * 
      * @return void
      */
     public function index(){
         $forms = Form::userForms(auth()->id(), true);
         if(!$forms->count())
-            return self::jsonError("Hech qanday forma topilmadi", 200);
+            return self::jsonError("No forms found", 200);
 
-        // Forma ID'sini MD5 formatiga o‘zgartirish
+        // remap to form id to md5
         $forms = $forms->map(function ($form) {
             return array_merge($form->toArray(), ['id' => md5($form->id)]);
         });        
         
 
         $this->forms = $forms;
-        return self::jsonSuccess("Formalar muvaffaqiyatli olindi");
+        return self::jsonSuccess("Forms fetched successfully");
     }
 
     /**
-     * Berilgan ID bo‘yicha formani olish
+     * Fetches a form by its ID
      * 
      * @param string $formId
      * @return void
@@ -44,24 +44,24 @@ class FormsController extends BaseController
     {
         try{
             $form = Form::where(DB::$capsule::raw("MD5(id)"), $formId)->first();
-            if(!$form) return self::jsonError("Forma topilmadi", 404);
+            if(!$form) return self::jsonError("Form not found", 404);
 
-            # Forma egaligini tekshirish
+            # validate form ownership
             if(!$this->formOwnerShipCheck($form->id) && !$this->hasAccessbySpace($form->spaces))
-                return self::jsonError("Sizda ushbu formaga kirish huquqi yo‘q", 403);
+                return self::jsonError("You don't have access to this form", 403);
 
-            $surveyMode = 'ruxsat berilgan';
+            $surveyMode = 'allowed';
             $formContent = $form->content;
 
-            # Formaning ochiq yoki yopiq ekanligini tekshirish
+            # check if form is open
             $this->formStatus = $formStatus = 
                 ($form->start_date < now() && $form->end_date > now()) || $form->is_indefinite;
 
             if(!$formStatus){
                 if($form->end_date < now()){
-                    $this->message = "Forma yuborish muddati tugagan";
-                    $formContent['mode'] = 'faqat ko‘rish';  // faqat o‘qish rejimi
-                    $surveyMode = 'cheklangan';
+                    $this->message = "Form submission has ended";
+                    $formContent['mode'] = 'display';             // read-only mode
+                    $surveyMode = 'restricted';
                 }else{
                     return response()->markup(view('app.forms.closed',[
                         'formId' => $form->id,
@@ -72,13 +72,13 @@ class FormsController extends BaseController
             $unset = ['id', 'user', 'content'];
             foreach($unset as $key) unset($form->$key);
 
-            # Ma’lumotlarni ajratish
+            # data allocation
             $this->form = $form;
             $this->publicForm = true;
             $this->surveyMode = $surveyMode;
             $this->formContent = $formContent;
 
-            return self::jsonSuccess("Forma muvaffaqiyatli olindi");
+            return self::jsonSuccess("Form fetcheded successfully");
         }
 
         catch(\Exception $e){
