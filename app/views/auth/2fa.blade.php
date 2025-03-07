@@ -10,14 +10,14 @@
 
                             <a class="d-flex flex-center text-decoration-none" href="/">
                                 <div class="d-flex align-items-center fw-bolder fs-3 d-inline-block">
-                                    <img src="/assets/images/brand/logo-dark.png" alt="dastur logosi" height="40" /><br>
+                                    <img src="/assets/images/brand/logo-dark.png" alt="app logo" height="40" /><br>
                                 </div>
                             </a>
 
                             
                             <p class="fs-9 text-center">
-                                <strong>Ikki faktorli autentifikatsiya</strong><br>
-                                Email manzilingizga yuborilgan kodni kiriting
+                                <strong>Two Factor Authentication</strong><br>
+                                Enter the code sent to your email address
                             </p>
 
                             <form action="@route('2fa')" id="2faForm" class="p-2" onsubmit="submitForm(event)">
@@ -29,15 +29,15 @@
 
                                 <div class="mb-3 row">
                                     <div class="col">
-                                        <button class="btn btn-primary w-100 fs-9" id="btn2fa" type="submit"> Kirishni tasdiqlash </button>
+                                        <button class="btn btn-primary w-100 fs-9" id="btn2fa" type="submit"> Verify Login </button>
                                     </div>
                                     <div class="col">
-                                        <button class="btn btn-light w-100 fs-9" id="resendTimer" data-resend-time="{{$timer}}" readonly disabled> Kodni qayta yuborish </button>
+                                        <button class="btn btn-light w-100 fs-9" id="resendTimer" data-resend-time="{{$timer}}" readonly disabled> Resend Code </button>
                                     </div>
                                 </div>
 
                                 <div class="mb-3 text-center">
-                                    <a href="@route('logout')" class="btn btn-danger w-100"> Chiqish </a>
+                                    <a href="@route('logout')" class="btn btn-danger w-100"> Logout </a>
                                 </div>
                             </form>
                         </div>

@@ -9,20 +9,20 @@
                             
                             <a class="d-flex flex-center text-decoration-none mb-3" href="/">
                                 <div class="d-flex align-items-center fw-bolder fs-3 d-inline-block">
-                                    <img src="/assets/images/brand/logo-dark.png" alt="dastur logosi" height="40" />
+                                    <img src="/assets/images/brand/logo-dark.png" alt="app logo" height="40" />
                                 </div>
                             </a>
 
                             <p class="fs-9 text-center">
-                                <strong>Parolni tiklash</strong><br>
-                                Parolingizni tiklash uchun email manzilingizni kiriting
+                                <strong>Reset Password</strong><br>
+                                Enter your email address to reset your password
                             </p>
 
                             <form action="{{ route('reset') }}" id="resetForm" class="p-2" onsubmit="submitForm(event)">
                                 @csrf
                             
                                 <div class="alert alert-success d-none fs-9">
-                                    <strong>Muvaffaqiyatli!</strong> Parolni tiklash uchun havola emailingizga yuborildi. Spam papkasini ham tekshiring.
+                                    <strong>Success!</strong> Check your email for a link to reset your password, Do not forget to check your spam folder.
                                 </div>
                                 
                                 <div class="form-group mb-3">
@@ -32,13 +32,13 @@
                                     </div>
                                 </div>
 
-                                <button class="btn btn-primary w-100 mb-3" id="btnReset" type="submit">Parolni tiklash</button>
+                                <button class="btn btn-primary w-100 mb-3" id="btnReset" type="submit">Reset Password</button>
                             </form>
 
                             <div class="row flex-between-center mb-3">
                                 <div class="text-center">
-                                    <span class="fs-9">Parolingiz esingizdami?</span>
-                                    <a class="fs-9 fw-bold" href="@route('login')">Kirish</a>
+                                    <span class="fs-9">Remembered your password?</span>
+                                    <a class="fs-9 fw-bold" href="@route('login')">Sign In</a>
                                 </div>
                             </div>
 
