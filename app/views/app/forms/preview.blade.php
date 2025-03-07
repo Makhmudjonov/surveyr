@@ -10,11 +10,11 @@
 
                 <div class="position-absolute end-5 top-0">
                     <a href="{{ route('forms.setup', $form->id, $form->slug) }}" class="btn btn-secondary btn-sm me-1">
-                        <i class="fa-solid fa-cogs"></i> Sozlamalar
+                        <i class="fa-solid fa-cogs"></i>
                     </a>
                     <a href="{{ route('forms.customize', $form->id, $form->slug) }}" class="btn btn-primary btn-sm">
                         <i class="fa-solid fa-plus d-inline d-md-none"></i>
-                        <span class="d-none d-md-inline">Formani tahrirlash</span>
+                        <span class="d-none d-md-inline">Customize Form</span>
                     </a>
                 </div>
             </div>

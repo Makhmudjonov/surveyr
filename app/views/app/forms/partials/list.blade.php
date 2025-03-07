@@ -3,10 +3,10 @@
         <thead>
             <tr>
                 <th></th>
-                <th>Shakl nomi</th>
-                @if($collabCol)<th class="text-center">Hamkorlar</th>@endif
-                <th class="text-center">Holati</th>
-                <th>O‘zgartirilgan</th>
+                <th>Form Name</th>
+                @if($collabCol)<th class="text-center">Collaborators</th>@endif
+                <th class="text-center">Status</th>
+                <th>Modified</th>
                 <th class="text-end"></th>
             </tr>
         </thead>
@@ -14,12 +14,12 @@
             @foreach($forms as $form)
                 <tr>
                     <td>
-                        <!-- TODO: ko‘p shakl ustida harakatlar -->
+                        <!-- TODO: bulky form actions -->
                         <input type="checkbox" class="formChecklist d-none" name="formsChecklist[]">
                     </td>
                     <td class="p-1">
                         <a class="fw-bold" href="@route('forms.customize', $form->id, $form->slug)">{{ $form->title }}</a> <br>
-                        <span class="text-body-tertiary fs-9">{{ !$form->description ? $form->title : substring($form->description, 100) }}</span>
+                        <span class="text-body-tertiary fs-9">{{ !$form->description ? $form->title :substring($form->description, 100) }}</span>
                     </td>
                     @if($collabCol)
                         <td class="text-center">
@@ -40,16 +40,16 @@
                     @endif
                     <td class="text-center">
                         @if($form->is_indefinite)
-                            <span class="text-success fs-9">Cheklanmagan</span>                            
+                            <span class="text-success fs-9">Indefinite</span>                            
                         @elseif($form->end_date->isPast() && !$form->is_indefinite)
                             <i class="fa-solid fa-circle text-danger"></i>
                         @elseif($form->start_date->isFuture())
                             <span class="text-info fs-9"> 
-                                Boshlanishiga {{ str_replace('hozirda', '', $form->start_date->diffForHumans()) }} qoldi
+                                Starts In {{ str_replace('from now', '', $form->start_date->diffForHumans()) }}
                             </span>
                         @else
                             <span class="text-success fs-9"> 
-                                Tugashiga {{ str_replace('hozirda', '', $form->end_date->diffForHumans()) }} qoldi
+                                Ends In {{ str_replace('from now', '', $form->end_date->diffForHumans()) }}
                             </span>
                         @endif
                     </td>
@@ -62,28 +62,28 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li>
                                     <a class="dropdown-item" href="@route('forms.preview', $form->id, $form->slug)">
-                                        <i class="fa-solid fa-eye me-2"></i> Ko‘rib chiqish
+                                        <i class="fa-solid fa-eye me-2"></i> Preview
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="@route('forms.submissions', $form->id, $form->slug)">
-                                        <i class="fa-solid fa-chart-line me-2"></i> Yuborilganlar
+                                        <i class="fa-solid fa-chart-line me-2"></i> Submissions
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="@route('forms.setup', $form->id, $form->slug)">
-                                        <i class="fa-solid fa-cogs me-2"></i> Sozlamalar
+                                        <i class="fa-solid fa-cogs me-2"></i> Form Setups
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="@route('forms.customize', $form->id, $form->slug)">
-                                        <i class="fa-solid fa-edit me-2"></i> Shaklni tahrirlash
+                                        <i class="fa-solid fa-edit me-2"></i> Customize Form
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item text-danger" href="@route('forms.delete', $form->id)" onclick="confirmDelete(event)" 
-                                        data-delete-msg="Bu shaklni o‘chirish uning barcha yuborilgan ma’lumotlarini ham o‘chiradi. Davom etishni istaysizmi?">
-                                        <i class="fa-solid fa-trash me-2"></i> Shaklni o‘chirish
+                                        data-delete-msg="Deleting this form will delete all its submissions. Are you sure you want to proceed?">
+                                        <i class="fa-solid fa-trash me-2"></i> Delete Form
                                     </a>
                                 </li>
                             </ul>

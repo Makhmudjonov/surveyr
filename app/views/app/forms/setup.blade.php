@@ -15,19 +15,19 @@
     <div class="content">
         <div class="row">
             <div class="col-12 mb-4 position-relative">
-                <h3 class="fs-7">Forma sozlamalari</h3>
+                <h3 class="fs-7">Form Settings</h3>
                 <p class="text-body-tertiary">
-                    Formangizning sozlamalarini moslang.
+                    Configure your form settings.
                 </p>
 
                 <div class="position-absolute end-5 top-0">
                     <a href="{{ route('forms.customize', $form->id, $form->slug) }}" class="btn btn-outline-dark" target="_blank"
-                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Formani moslashtirish">
+                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Customize Form">
                         <i class="fa-solid fa-gear"></i>
                     </a>
                     <a class="btn btn-primary" href="@route('forms.preview', $form->id, $form->slug)" target="_blank">
                         <i class="fa-solid fa-eye d-inline d-md-none"></i>
-                        <span class="d-none d-md-inline fs-12">Ko'rish</span>
+                        <span class="d-none d-md-inline fs-12">Preview</span>
                     </a>  
                 </div>
             </div>
@@ -42,11 +42,11 @@
                             <div class="mx-auto" id="qrcode"></div>
                         </div>
 
-                        <!-- #qrcode rasmini yuklab olish -->
+                        <!-- download #qrcode img -->
                         <div class="text-center mb-3">
                             <a href="javascript:void(0)" class="btn btn-sm btn-outline-primary" onclick="downloadQRCode(`{{$form->slug}}`)">
                                 <i class="fa fa-download"></i>
-                                QR kodni yuklab olish
+                                Download QR Code
                             </a>
                         </div>
 
