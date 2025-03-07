@@ -3,15 +3,15 @@
     <div class="content">
         <div class="row">
             <div class="col-12 mb-4 position-relative">
-                <h3 class="fs-7">Form Spaces</h3>
+                <h3 class="fs-7">Forma Bo‘shliqlari</h3>
                 <p class="text-body-tertiary">
-                    Keep your forms organized in spaces.
+                    Formangizni tartibli saqlash uchun bo‘shliqlardan foydalaning.
                 </p>
 
                 <div class="position-absolute end-5 top-0">
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createSpaceModal">
                         <i class="fa-solid fa-plus d-inline d-md-none"></i>
-                        <span class="d-none d-md-inline">New Space</span>
+                        <span class="d-none d-md-inline">Yangi Bo‘shliq</span>
                     </button>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                                 <span class="d-inline-block text-truncate w-100 mt-1">
                                     <span>{{ $space->description }}</span>
                                 </span>
-                                <span class="d-block text-body-secondary mt-3 fs-10 fw-bold">by {{ $space->user->fullname }}</span>
+                                <span class="d-block text-body-secondary mt-3 fs-10 fw-bold">Tomonidan: {{ $space->user->fullname }}</span>
 
                                 @if($space->user_id == auth()->id())
                                     <div class="position-absolute top-5 end-3">
@@ -41,13 +41,13 @@
                                                 <li>
                                                     <a class="dropdown-item" href="{{ route('spaces.show', $space->id) }}">
                                                         <i class="fa-solid fa-edit me-2"></i>
-                                                        Manage Space
+                                                        Bo‘shliqni boshqarish
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a class="dropdown-item text-danger" onclick="confirmDelete(event)" href="{{ route('spaces.delete', $space->id) }}">
                                                         <i class="fa-solid fa-trash me-2"></i>
-                                                        Delete Space
+                                                        Bo‘shliqni o‘chirish
                                                     </a>
                                                 </li>
                                             </ul>
@@ -58,7 +58,7 @@
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col-auto">
-                                        {{ \App\Models\Space::spaceForms($space->id)->count() }} Forms
+                                        {{ \App\Models\Space::spaceForms($space->id)->count() }} Forma
                                     </div>
                                     <div class="col-auto text-end">
 
@@ -82,8 +82,8 @@
             @else
                 <div class="col-12">
                     @include('components.empty', [
-                        'emptyTitle' => 'No Records found',
-                        'emptyText' => 'No spaces found, create a new space to get started.'
+                        'emptyTitle' => 'Hech narsa topilmadi',
+                        'emptyText' => 'Hech qanday bo‘shliq topilmadi, yangi bo‘shliq yaratib ishni boshlang.'
                     ])
                 </div>
             @endif

@@ -2,11 +2,11 @@
 
 /**
  * ----------------------------------------------------------
- * Dashboard Controller
+ * Boshqaruv paneli (Dashboard) nazoratchisi
  * ----------------------------------------------------------
  * 
- * This controller is responsible for handling the dashboard
- * page and its related functionalities.
+ * Ushbu nazoratchi boshqaruv paneli sahifasi va unga bog‘liq 
+ * funksiyalarni boshqarish uchun javobgardir.
  * 
  */
 
@@ -30,44 +30,43 @@ class DashboardController extends Controller
         $this->statsChart = Collection::formStats(auth()->id());
         $this->recentSubmissions = Collection::recentSubmissions(auth()->id());
 
-        return $this->renderPage("Dashboard", "app.dashboard.home");
+        return $this->renderPage("Boshqaruv paneli", "app.dashboard.home");
     }
 
-    # home stats
+    # bosh sahifa statistikasi
     protected function homeStats() : array
     {
         return [
             [   
-                'title' => 'Forms',
-                'subtitle' => 'All Forms',
+                'title' => 'Formalari',
+                'subtitle' => 'Barcha formalari',
                 'count' => Form::userForms(auth()->id())->count(),
                 'icon' => 'fa-regular fa-table-tree text-success'
             ],
 
-            # open forms
+            # ochiq formalari
             [
-                'title' => 'Open',
-                'subtitle' => 'Open for submission',
+                'title' => 'Ochiq',
+                'subtitle' => 'Topshirish uchun ochiq',
                 'count' => Form::openForms(auth()->id())->count(),
                 'icon' => 'fa-regular fa-seal-question text-warning'
             ],
 
-            # spaces
+            # bo‘limlar
             [
-                'title' => 'Spaces',
-                'subtitle' => 'All Spaces',
+                'title' => 'Bo‘limlar',
+                'subtitle' => 'Barcha bo‘limlar',
                 'count' => Space::userSpaces(auth()->id())->count(),
                 'icon' => 'fa-regular fa-folders text-info'
             ],
 
-            # unreviewed
+            # ko‘rib chiqilmagan
             [
-                'title' => 'Pending',
-                'subtitle' => 'unreviewed submissions',
+                'title' => 'Kutilmoqda',
+                'subtitle' => 'Ko‘rib chiqilmagan topshiriqlar',
                 'count' => Collection::ofReview('pending', auth()->id())->count(),
                 'icon' => 'fa-regular fa-seal-exclamation text-danger'
             ]
-
         ];
     }
 

@@ -9,18 +9,18 @@
 
                             <a class="d-flex flex-center text-decoration-none mb-3" href="/">
                                 <div class="d-flex align-items-center fw-bolder fs-3 d-inline-block">
-                                    <img src="/assets/images/brand/logo-dark.png" alt="app logo" height="40" />
+                                    <img src="/assets/images/brand/logo-dark.png" alt="dastur logosi" height="40" />
                                 </div>
                             </a>
 
                             @if(AuthConfig('google.auth'))
                                 <a href="{{ route('google.auth') }}" class="btn btn-phoenix-secondary w-100 mb-3">
-                                    <span class="fab fa-google text-danger me-2 fs-9"></span>Sign in with google
+                                    <span class="fab fa-google text-danger me-2 fs-9"></span>Google orqali kirish
                                 </a>
 
                                 <div class="position-relative">
                                     <hr class="bg-body-secondary mt-5 mb-4" />
-                                    <div class="divider-content-center">or use email</div>
+                                    <div class="divider-content-center">yoki emaildan foydalaning</div>
                                 </div>
                             @endif
 
@@ -28,7 +28,7 @@
                                 @csrf
 
                                 <div class="mb-3 text-start">
-                                    <label class="form-label" for="email">Email address</label>
+                                    <label class="form-label" for="email">Email manzili</label>
                                     <div class="form-icon-container">
                                         <input class="form-control form-icon-input" name="email" id="email" type="email" placeholder="name@example.com" required>
                                         <span class="fas fa-user text-body fs-9 form-icon"></span>
@@ -36,9 +36,9 @@
                                 </div>
 
                                 <div class="mb-3 text-start">
-                                    <label class="form-label" for="password">Password</label>
+                                    <label class="form-label" for="password">Parol</label>
                                     <div class="form-icon-container" data-password="data-password">
-                                        <input class="form-control form-icon-input pe-6" name="password" id="password" type="password" placeholder="Password" data-password-input="data-password-input" required>
+                                        <input class="form-control form-icon-input pe-6" name="password" id="password" type="password" placeholder="Parol" data-password-input="data-password-input" required>
                                         <span class="fas fa-key text-body fs-9 form-icon"></span>
                                         <button type="button" class="btn px-3 py-0 h-100 position-absolute top-0 end-0 text-body-tertiary" aria-label="passwordToggle" data-password-toggle="data-password-toggle">
                                             <span class="fa fa-eye show"></span>
@@ -49,19 +49,19 @@
 
                                 <div class="row flex-between-center mb-3">
                                     <div class="col-auto">
-                                        <a class="fs-9 fw-semibold text-danger" href="{{ route('reset', 'request') }}">Forgot Password?</a>
+                                        <a class="fs-9 fw-semibold text-danger" href="{{ route('reset', 'request') }}">Parolni unutdingizmi?</a>
                                     </div>
 
                                     @if(AuthConfig('allowRegistration'))
                                         <div class="col-auto">
                                             <div class="text-center">
-                                                <a class="fs-9 fw-bold" href="{{ route('register') }}">Create an account</a>
+                                                <a class="fs-9 fw-bold" href="{{ route('register') }}">Hisob yaratish</a>
                                             </div>
                                         </div>
                                     @endif
                                 </div>
 
-                                <button class="btn btn-primary w-100 mb-3" id="btnLogin" type="submit">Sign In</button>
+                                <button class="btn btn-primary w-100 mb-3" id="btnLogin" type="submit">Kirish</button>
                             </form>
                         
                         </div>

@@ -1,48 +1,49 @@
+// Vizualizatsiya paneli uchun qo‘shimcha sozlamalar
 const vizPanelOptions = {
-    allowHideQuestions: false
+    allowHideQuestions: false // Savollarni yashirishni o‘chirib qo‘yish
 };
 
-// Parse survey and results data
+// Laravel Blade orqali ma'lumotlarni JSON formatiga o'tkazish
 const surveyJson = JSON.parse(`{!! json_encode($form->content) !!}`);
 const surveyResults = JSON.parse(`{!! json_encode($collections) !!}`);
 const tabInfo = JSON.parse(`{!! json_encode($tabsInfo) !!}`);
 
 const survey = new Survey.Model(surveyJson);
 
-// Array to store created VisualizationPanels to avoid redundant re-rendering
+// Vizualizatsiya panellarini saqlash uchun obyekt
 const vizPanels = {};
 
-// Function to render visualization for a specific tab
+// Bo‘lim (tab) uchun vizualizatsiyani yaratish funksiyasi
 function renderTabVisualization(tab, index) {
-    // Check if the VisualizationPanel for this tab has already been created
+    // Agar vizualizatsiya paneli allaqachon yaratilgan bo‘lsa, uni qayta yaratmaymiz
     if (!vizPanels[index]) {
-        // Filter questions for the current tab
+        // Faqat ushbu tabga tegishli savollarni olish
         const questions = survey.getAllQuestions().filter(q => tab.questions.includes(q.name));
         
-        // Create a new VisualizationPanel with tab-specific questions
+        // Yangi vizualizatsiya panelini yaratish
         vizPanels[index] = new SurveyAnalytics.VisualizationPanel(
             questions,
             surveyResults,
             vizPanelOptions
         );
 
-        // Create a div to hold the visualization for this tab if it doesn't exist
+        // Agar ushbu tabning `div` elementi mavjud bo‘lmasa, uni yaratamiz
         let tabContent = document.getElementById(`tabContent-${index}`);
         if (!tabContent) {
             tabContent = document.createElement("div");
             tabContent.id = `tabContent-${index}`;
-            tabContent.style.display = "none";  // Hide initially
+            tabContent.style.display = "none";  // Dastlab yashirin bo‘ladi
             document.getElementById("surveyVizPanel").appendChild(tabContent);
         }
 
-        // Render the VisualizationPanel in the tab content
+        // Vizualizatsiyani ekranga chiqarish
         vizPanels[index].render(tabContent);
     }
 }
 
-// Event listener to handle tab switching
+// `Tab`ni almashtirish (bo‘limni o‘zgartirish) funksiyasi
 function switchTab(index) {
-    // Hide all tab contents
+    // Barcha `tabContent`larni yashirish
     tabInfo.forEach((_, i) => {
         const tabContent = document.getElementById(`tabContent-${i}`);
         if (tabContent) {
@@ -50,27 +51,25 @@ function switchTab(index) {
         }
     });
     
-    // Show selected tab content and render its VisualizationPanel if not already done
+    // Tanlangan `tab` uchun vizualizatsiyani yaratish
     const selectedTabContent = document.getElementById(`tabContent-${index}`);
-    // selectedTabContent.style.display = "block";
-    renderTabVisualization(tabInfo[index], index);  // Ensure the panel is rendered
+    renderTabVisualization(tabInfo[index], index);  // Agar hali yaratilmagan bo‘lsa, yaratadi
 }
 
-// Set up tabs on DOMContentLoaded
+// `DOMContentLoaded` hodisasi sodir bo‘lganda bo‘lim tugmalarini yaratish
 document.addEventListener("DOMContentLoaded", function() {
     const tabContainer = document.createElement("div");
-    tabContainer.className = "tab-container";
+    tabContainer.className = "tab-container"; // Stil qo‘shish uchun class
 
-    // Create tab buttons and initialize the first tab's visualization
+    // Har bir bo‘lim uchun tugma yaratish va birinchi bo‘limni ishga tushirish
     tabInfo.forEach((tab, index) => {
-        // Create a button for each tab
         const tabButton = document.createElement("button");
-        tabButton.textContent = tab.name;
-        tabButton.onclick = () => switchTab(index);
+        tabButton.textContent = tab.name; // Tugma matni - bo‘lim nomi
+        tabButton.onclick = () => switchTab(index); // Tugmaga bosilganda `tab` almashtirish
         tabContainer.appendChild(tabButton);
     });
 
-    // Add tab container to the DOM and render the first tab by default
+    // Bo‘lim tugmalarini sahifaga qo‘shish va birinchi `tab`ni yuklash
     document.getElementById("surveyVizPanel").prepend(tabContainer);
-    switchTab(0);  // Render the first tab on load
+    switchTab(0);  // Sahifa yuklanganda birinchi bo‘limni ochish
 });

@@ -11,9 +11,9 @@
                         <div class="col-12 col-lg-6 text-center text-lg-start">
                             <img class="img-fluid mb-6 w-50 w-lg-75 d-dark-none" src="/assets/images/vector/404.png" alt="" />
                             <img class="img-fluid mb-6 w-50 w-lg-75 d-light-none" src="/assets/images/vector/dark_404.png" alt="" />
-                            <h2 class="text-body-secondary fw-bolder mb-3">Page Missing!</h2>
-                            <p class="text-body mb-5">But no worries! Our ostrich is looking everywhere <br class="d-none d-sm-block" />while you wait safely. </p>
-                            <a class="btn btn-lg btn-primary" href="@route('app.home')">Go Home</a>
+                            <h2 class="text-body-secondary fw-bolder mb-3">Sahifa topilmadi!</h2>
+                            <p class="text-body mb-5">Xavotir olmang! Bizning tuyaqush har joyni qidirmoqda, <br class="d-none d-sm-block" />siz esa xavfsiz kutishingiz mumkin. </p>
+                            <a class="btn btn-lg btn-primary" href="@route('app.home')">Bosh sahifaga qaytish</a>
                         </div>
                     </div>
                 </div>

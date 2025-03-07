@@ -9,20 +9,20 @@
         </tr>
         <tr>
             <td class="wrapper">
-                <p>Hi {{ $name }},</p>
-                <p>Welcome to our platform! To get started, please confirm your email address by clicking the button below:</p>
+                <p>Salom {{ $name }},</p>
+                <p>Bizning platformamizga xush kelibsiz! Ishni boshlash uchun, iltimos, quyidagi tugmani bosib elektron pochtangizni tasdiqlang:</p>
                 <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                     <tbody>
                         <tr style="text-align:center">
-                            <td><a href="{{ $confirmationLink }}" target="_blank">Confirm Email</a></td>
+                            <td><a href="{{ $confirmationLink }}" target="_blank">Emailni tasdiqlash</a></td>
                         </tr>
                     </tbody>
                 </table>
-                <p>If you're having trouble clicking the "Confirm Email" button, copy and paste the following URL into your web browser:</p>
+                <p>Agar "Emailni tasdiqlash" tugmasini bosishda muammo yuzaga kelsa, quyidagi havolani brauzeringizga nusxalab qo‘ying va oching:</p>
                 <p>{{ $confirmationLink }}</p>
-                <p>Thank you for joining us! We're excited to have you on board.</p>
-                <p>Best regards,</p>
-                <p> {{ _env('APP_NAME') }} </p>
+                <p>Bizga qo‘shilganingiz uchun rahmat! Siz bilan hamkorlik qilishdan xursandmiz.</p>
+                <p>Hurmat bilan,</p>
+                <p>{{ _env('APP_NAME') }}</p>
             </td>
         </tr>
         

@@ -1,91 +1,28 @@
-@extends('layouts.app.main')
-@section('content')
-    <div class="content">
+<div class="modal fade" id="aiFormModal" tabindex="-1" aria-labelledby="aiFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="aiFormModalLabel">AI Shakl Yaratish</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+            </div>
+            <div class="modal-body">
+                <form action="@route('forms.generate')" method="POST" onsubmit="submitForm(event)">
+                    @csrf
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="formTitle" name="title" placeholder="Shakl nomi, masalan: Talabalar Ro‘yxatga Olish" required>
+                    </div>
+                    <div class="position-relative mb-3">
+                        <textarea class="form-control" id="formDescription" name="description" rows="25" placeholder="Shakl tavsifini kiriting" required></textarea>
 
-        <div class="row mb-3 gy-6">
-
-            <div class="col-12 col-xxl-2">
-                <div class="row align-items-center g-3 g-xxl-0 h-100 align-content-between">
-
-                    @foreach ($stats as $stat)
-                        <div class="col-12 col-sm-6 col-md-3 col-lg-6 col-xl-3 col-xxl-12 mb-3">
-                            <div class="d-flex align-items-center">
-                                <i class="{{ $stat['icon'] }} fs-4 lh-1"></i>
-                                <div class="ms-3">
-                                    <div class="d-flex align-items-end">
-                                        <h2 class="mb-0 me-2 fs-4">{{ $stat['count'] }}</h2>
-                                        <span class="fs-7 fw-semibold text-body">{{ $stat['title'] }}</span>
-                                    </div>
-                                    <p class="text-body-secondary fs-9 mb-0">{{ $stat['subtitle'] }}</p>
-                                </div>
-                            </div>
+                        <div class="position-absolute" style="bottom:-1.4rem;">
+                            <a href="javascript:void(0)" class="fs-9 text-info" onclick="generateSampleDescription(1)">Namuna 1</a> | 
+                            <a href="javascript:void(0)" class="fs-9 text-info" onclick="generateSampleDescription(2)">Namuna 2</a>
                         </div>
-                    @endforeach
 
-                </div>
-            </div>
-
-            <div class="col-12 col-xl-6 col-xxl-5">
-                @if(count($statsChart))
-                    <div class="mx-xxl-0">
-                        <div id="submissionBarChart" style="width: 100%; height: 400px;"></div>
+                        <button type="submit" class="btn btn-primary position-absolute" style="bottom:0.5rem; right:0.4rem; z-index:1">Yaratish</button>
                     </div>
-                @else
-                    <div id="submissionBarChart" comment="error suppression" class="d-none"></div>
-                    @include('components.empty', [
-                        'title' => 'Hali hech qanday yuborishlar yo‘q',
-                        'message' => 'Shakl yarating va ma’lumotlarni to‘plashni boshlang'
-                    ])
-                @endif
+                </form>
             </div>
         </div>
-
-        <div class="row mt-5">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-header-title">Oxirgi yuborishlar</h4>
-                    </div>
-                    <div class="card-body" style="min-height: 400px;">
-                        @if($recentSubmissions->count())
-                            <div style="overflow-x:auto">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Shakl nomi</th>
-                                            <th class="text-center">Yuborilgan</th>
-                                            <th class="text-center">Ko‘rib chiqilmoqda</th>
-                                            <th class="text-end">Oxirgi yuborish</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($recentSubmissions as $submission)
-                                            <tr>
-                                                <td class="align-middle ps-1">
-                                                    <a href="@route('forms.submissions', $submission->form_id)">
-                                                        {{ $submission->form->title }}
-                                                    </a>
-                                                </td>
-                                                <td class="align-middle text-center">{{ $submission->submission }}</td>
-                                                <td class="align-middle text-center">{{ $submission->pending_review }}</td>
-                                                <td class="align-middle text-end pe-1">{{ carbon()::parse($submission->latest_submission)->diffForHumans() }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>                        
-                        @else
-                            @include('components.empty', [
-                                'title' => 'Hali hech qanday yuborishlar yo‘q',
-                                'message' => 'Shakl yarating va ma’lumotlarni to‘plashni boshlang'
-                            ])
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
-@endsection
-@script('/vendor/echarts/echarts.min.js','src')
-@script('app.dashboard.scripts.charts')
+</div>

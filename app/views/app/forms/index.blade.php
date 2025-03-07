@@ -6,9 +6,9 @@
         <div class="row">
 
             <div class="col-12 mb-4 position-relative">
-                <h3 class="fs-7">Form Templates</h3>
+                <h3 class="fs-7">Shablon formalar</h3>
                 <p class="text-body-tertiary">
-                    Choose from a variety of form templates,
+                    Turli xil forma shablonlaridan birini tanlang.
                     <a href="#" class="text-phoenix-primary"></a>
                 </p>
 
@@ -21,7 +21,7 @@
 
                     <a href="@route('forms.build')" class="btn btn-primary btn-sm">
                         <i class="fa-solid fa-plus me-2 d-inline d-md-none"></i>
-                        <span class="d-none d-md-inline">New Form</span>
+                        <span class="d-none d-md-inline">Yangi forma</span>
                     </a>
                 </div>
 
@@ -52,8 +52,8 @@
                     @else
                         <div class="text-center">
                             @include('components.empty', [
-                                'title' => 'No forms yet',
-                                'message' => 'Create a form and start collecting data'
+                                'title' => 'Hali hech qanday forma mavjud emas',
+                                'message' => 'Yangi forma yarating va ma’lumot yig‘ishni boshlang'
                             ])
                         </div>
                     @endif

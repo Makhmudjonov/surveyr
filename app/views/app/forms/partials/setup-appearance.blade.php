@@ -1,6 +1,6 @@
 <div class="card d-none setup-card bg-transparent border-0" id="appearanceSettings">
     <div class="card-header py-3">
-        <h5 class="card-title mb-0">Theme Settings</h5>
+        <h5 class="card-title mb-0">Mavzu sozlamalari</h5>
     </div>
 
     <div class="card-body p-1 pt-3">

@@ -9,13 +9,13 @@
             <div class="col-12 mb-4 position-relative">
                 <h3 class="fs-7">{{ $form->title }}</h3>
                 <p class="text-body-tertiary">
-                    View, Visualize and manage your form submissions
+                    Formaga yuborilgan ma'lumotlarni ko'rish, tahlil qilish va boshqarish
                 </p>
 
                 <div class="position-absolute end-5 top-0">
                     <a href="@route('forms.submissions', $form->id)" class="btn btn-primary btn-sm">
                         <i class="fa-solid fa-chart me-2 d-inline d-md-none"></i>
-                        <span class="d-none d-md-inline">Compiled View</span>
+                        <span class="d-none d-md-inline">Tuzilgan formani ko'rish</span>
                     </a>                    
                 </div>
             </div>

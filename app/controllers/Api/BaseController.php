@@ -7,11 +7,11 @@ use App\Models\Space;
 
 /**
  * 
- * API Base Controller
+ * API Asosiy Kontrolleri
  *
- * This is the base controller for your Leaf MVC Project.
- * You can initialize packages or define methods here to use
- * them across all your other controllers which extend this one.
+ * Bu sizning Leaf MVC loyihangiz uchun asosiy kontroller.
+ * Bu yerda paketlarni ishga tushirishingiz yoki boshqa 
+ * barcha kontrollerlaringizda ishlatish uchun metodlarni aniqlashingiz mumkin.
  * 
  */
 
@@ -36,7 +36,7 @@ use App\Models\Space;
     }
 
     /**
-     * Respond with a JSON success message.
+     * JSON formatida muvaffaqiyatli javob qaytarish.
     *
     * @param string $message
     * @return Response
@@ -51,7 +51,7 @@ use App\Models\Space;
     }
 
     /**
-     * Respond with a JSON error message.
+     * JSON formatida xato haqida javob qaytarish.
     *
     * @param string $message
     * @param int $code
@@ -67,7 +67,7 @@ use App\Models\Space;
     }
 
     /**
-     * Handle exceptions and respond with a JSON error.
+     * Istisnolarni qayta ishlash va JSON formatida xato javobi qaytarish.
     *
     * @param Throwable $e
     * @return Response
@@ -76,7 +76,7 @@ use App\Models\Space;
     {
         $response = [
             'status' => false,
-            'message' => 'An unexpected error occurred',
+            'message' => 'Kutilmagan xatolik yuz berdi',
         ];
 
         if (filter_var(env('APP_DEBUG', false), FILTER_VALIDATE_BOOL)) {
@@ -91,10 +91,10 @@ use App\Models\Space;
     }
 
 
-    /* Form Helpers */
+    /* Forma yordamchilari */
 
     /**
-     * Check form ownership
+     * Forma egasini tekshirish
      *
      * @param int $id
      * @return bool
@@ -109,7 +109,7 @@ use App\Models\Space;
     }
 
     /**
-     * Check if user has access to form
+     * Foydalanuvchida forma uchun ruxsat borligini tekshirish
      *
      * @param array $spaces
      * @return bool

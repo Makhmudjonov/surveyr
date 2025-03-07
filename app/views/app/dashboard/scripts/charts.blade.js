@@ -1,16 +1,17 @@
 const statsChart = JSON.parse(`{!! $statsChart !!}`);
 
+// Formalar nomlarini va ularning yuborilgan sonini ajratib olish
 const formTitles = statsChart.map(item => item.form.title);
 const submissionCounts = statsChart.map(item => item.count);
 
-// Initialize the ECharts instance
+// ECharts diagrammasini boshlash
 const chartDom = document.getElementById('submissionBarChart');
 const myChart = echarts.init(chartDom);
 
-// Chart configuration
+// Diagramma sozlamalari
 const option = {
     title: {
-        text: 'Form Submission Stats',
+        text: 'Forma yuborish statistikasi',
     },
     tooltip: {
         trigger: 'axis',
@@ -19,25 +20,25 @@ const option = {
         type: 'category',
         data: formTitles,
         axisLabel: {
-            rotate: 45, // Rotate labels for better readability
-            interval: 0, // Show all labels
+            rotate: 45, // Yorliqlarni burish (o‘qilishi oson bo‘lishi uchun)
+            interval: 0, // Barcha yorliqlarni ko‘rsatish
         }
     },
     yAxis: {
         type: 'value',
-        name: 'Submission Count',
+        name: 'Yuborishlar soni',
     },
     series: [
         {
-            name: 'Submissions',
+            name: 'Yuborishlar',
             type: 'bar',
             data: submissionCounts,
             itemStyle: {
-                color: '#4a90e2', // Customize bar color
+                color: '#4a90e2', // Diagramma ustunlari rangi
             },
         },
     ],
 };
 
-// Render the chart
+// Diagrammani chizish
 myChart.setOption(option);
